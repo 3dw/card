@@ -1,5 +1,8 @@
 
 <!DOCTYPE html>
+
+<html ng-app = "cardApp">
+
 <head>
 <meta charset="utf-8">
 <title>閃卡</title>
@@ -12,21 +15,24 @@
 
 
 <link rel="stylesheet" type="text/css" class="ui" href="stylesheets/semantic.min.css">
+<link rel="stylesheet" type="text/css" class="ui"  href = "index.css">
+
 <script src="javascripts/jquery-1.10.2.js"></script>
 <script src="javascripts/jquery-ui.js"></script>
 <script src="javascripts/underscore-min.js"></script>
 <script src="javascripts/backbone-min.js"></script>
+<script src="javascripts/angular.min.js"></script>
 
 
-<link rel="stylesheet" type = "text/css" href = "index.css"
 
 
 </head>
 
 <script type="text/javascript" src = "index.js"></script>
+<!-- <script type="text/javascript" src = "indexOld.js"></script>  -->
 
 
-<body>
+<body ng-controller = "cardCtrl" ng-keypress = "flash($event)">
 
 
 <nav class="ui tiered menu">
@@ -62,6 +68,7 @@
 	<a class="active teal item" onclick "swi(this)">Z</a>
 	<a class="item" onclick "swi(this)">Z/7Z</a>
 	<a class="item" onclick "swi(this)">Z/12Z</a>
+
 </div>
 
 </nav>
@@ -70,34 +77,25 @@
 
 <br />
 
-<table style = "float:right;width:15%">
-	<tr>
-		<td><button class="ui huge black button" onclick="clk()">Enter</button></td>
-	</tr>
-</table>
 
 <div style="diplay block:;width:100%;height:15ex">
 <table style="margin-left: 20px;width:80%" >
 
 <tr>
 	<td width="50%"  class="ui segment">
-            <span class="ui gray ribbon label" style = "width:12%">加</span>
-            <button class="ui large button num" onclick="pl(this)">1</button>
+            <span class="ui gray ribbon label" style = "width:12%" ng-click = "op = '+'">加</span>
 
 	</td>
 	<td width="50%" class="ui segment">
-            <span class="ui gray ribbon label" style = "width:12%">乘</span>
-            <button class="ui large button num"  onclick="tm(this)">3</button>
+            <span class="ui gray ribbon label" style = "width:12%" ng-click = "op = '*'">乘</span>
 	</td>
 </tr>
 <tr >
 	<td width="400" class="ui segment">
-            <span class="ui gray ribbon label" style = "width:12%">減</span>
-				<button class="ui large button num" onclick="mi(this)">5</button>
+            <span class="ui gray ribbon label" style = "width:12%" ng-click = "op = '-'">減</span>
 	</td>
 	<td width="400" class="ui segment">
-            <span class="ui gray ribbon label" style = "width:12%">除</span>
-				<button class="ui large button num" id = "dv1"  onclick="dv(this)">7</button>
+            <span class="ui gray ribbon label" style = "width:12%" ng-click = "op = '/'">除</span>
 	</td>
 </tr>
 </table>
@@ -105,7 +103,18 @@
 
 
 <br><br>
-<div id = "card" class="ui message" style="height: 50ex;width: 95%; border:2px;">
+<div id = "card" ng-show = "side == 0" class="ui message" style="height: 50ex;width: 95%; border:2px;">
+
+  <p id = "bigans" class = "bigans">{{n1}} {{op | showOp}}  {{n2}} 
+  </p>
+</div>
+
+<div id = "card" ng-show = "side == 1" class="ui message" style="height: 50ex;width: 95%; border:2px;">
+  <p id = "bigans" class = "bigans">{{$eval(n1+op+n2)}} 
+  </p>
+</div>
+
+<div id = "card" ng-hide = "true" class="ui message" style="height: 50ex;width: 95%; border:2px;">
 	<p id = "bigans" class = "bigans"><br/>
 	歡迎使用多功能閃卡！<br/>
 	<span class ="mobile">手機橫放畫面較佳。</span>
