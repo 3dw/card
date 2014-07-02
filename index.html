@@ -1,52 +1,118 @@
+
 <!DOCTYPE html>
-<html>
+<head>
+<meta charset="utf-8">
+<title>閃卡</title>
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Card : flash learning card" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+<!--Author: Bestian Tang-->
+<!--Version: 1.0-->
+<!-- Release to Freemath, 自學數學團-->
+<!-- Right: CC0, Public Domain-->
 
-    <title>Card</title>
-  </head>
 
-  <body>
+<link rel="stylesheet" type="text/css" class="ui" href="stylesheets/semantic.min.css">
+<script src="javascripts/jquery-1.10.2.js"></script>
+<script src="javascripts/jquery-ui.js"></script>
+<script src="javascripts/underscore-min.js"></script>
+<script src="javascripts/backbone-min.js"></script>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/3dw/card">View on GitHub</a>
 
-          <h1 id="project_title">Card</h1>
-          <h2 id="project_tagline">flash learning card</h2>
+<link rel="stylesheet" type = "text/css" href = "index.css"
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/3dw/card/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/3dw/card/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="card" class="anchor" href="#card"><span class="octicon octicon-link"></span></a>card</h1>
+</head>
 
-<p>flash learning card</p>
-      </section>
-    </div>
+<script type="text/javascript" src = "index.js"></script>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Card maintained by <a href="https://github.com/3dw">3dw</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
 
-    
+<body>
 
-  </body>
-</html>
+
+<nav class="ui tiered menu">
+
+  <h3 class="header item">閃卡</h3>
+
+
+  <a class="active item" onclick="swi(this)">6</a>
+  <a class="item" onclick="swi(this)">.</a>
+  <a class="item" onclick="swi(this)">$</a>
+  <a class="item" onclick="swi(this)">六</a>
+  <a class="item" onclick="swi(this)">步</a>
+  <a class="item" onclick="swi(this)">列</a>
+  <a class="item" onclick="swi(this)">x</a>
+
+  <a class="active green item" onclick="swi(this)">閃卡</a>
+  <a class="item" onclick="swi(this)">挑戰</a>
+  <a class="item" onclick="swi(this)">挫折</a>
+  <a class="item" onclick="hack(this)">修改評語</a>
+
+
+  <a class="active blue item" onclick="chUp(this)">20</a>
+  <a class="item" onclick="chUp(this)">50</a>
+  <a class="item" onclick="chUp(this)">100</a>
+  <a class="item" onclick="chUp(this)">1000</a>
+
+
+  <a class="active purple item" onclick="swi(this)">0</a>
+  <a class="item" onclick="chLow(this)">-20</a>
+  <a class="item" onclick="chLow(this)">-50</a>
+  <a class="item" onclick="chLow(this)">-100</a>
+
+	<a class="active teal item" onclick "swi(this)">Z</a>
+	<a class="item" onclick "swi(this)">Z/7Z</a>
+	<a class="item" onclick "swi(this)">Z/12Z</a>
+</div>
+
+</nav>
+
+
+
+<br />
+
+<table style = "float:right;width:15%">
+	<tr>
+		<td><button class="ui huge black button" onclick="clk()">Enter</button></td>
+	</tr>
+</table>
+
+<div style="diplay block:;width:100%;height:15ex">
+<table style="margin-left: 20px;width:80%" >
+
+<tr>
+	<td width="50%"  class="ui segment">
+            <span class="ui gray ribbon label" style = "width:12%">加</span>
+            <button class="ui large button num" onclick="pl(this)">1</button>
+
+	</td>
+	<td width="50%" class="ui segment">
+            <span class="ui gray ribbon label" style = "width:12%">乘</span>
+            <button class="ui large button num"  onclick="tm(this)">3</button>
+	</td>
+</tr>
+<tr >
+	<td width="400" class="ui segment">
+            <span class="ui gray ribbon label" style = "width:12%">減</span>
+				<button class="ui large button num" onclick="mi(this)">5</button>
+	</td>
+	<td width="400" class="ui segment">
+            <span class="ui gray ribbon label" style = "width:12%">除</span>
+				<button class="ui large button num" id = "dv1"  onclick="dv(this)">7</button>
+	</td>
+</tr>
+</table>
+</div>
+
+
+<br><br>
+<div id = "card" class="ui message" style="height: 50ex;width: 95%; border:2px;">
+	<p id = "bigans" class = "bigans"><br/>
+	歡迎使用多功能閃卡！<br/>
+	<span class ="mobile">手機橫放畫面較佳。</span>
+	</p>
+</div>
+<br />
+
+
+
+</body>
