@@ -1,124 +1,59 @@
-	.num {
-		width:60%;
-	}
+body {
+	background-color: #fc9;
+}
 
-	body {
-		 font-family:sans-serif, Helvetica, Verdana;
-	}
+.roman {
+	display: inline-block;
+}
 
-	#bigans {
-		font-size: 6rem; margin-left:20px; color:blue;
-		text-align: center;
-	}
+#card {
+	min-height: 320px;
 
-	.tool {
-		display: block;
-		min-width: 150px;
-		min-height: 25px;
-		border-radius: 15px;
-		overflow: hidden;
-	}
-	.tool:hover{
-		border-bottom: 3px black ridge;
-	}
-	.tool.zero {
-		position: fixed;
-		bottom: 10px;
-		left: 5%;
-	}
-	.tool.one {
-		position: fixed;
-		bottom: 10px;
-		left: 20%;
-	}
-	.tool.two {
-		position: fixed;
-		bottom: 10px;
-		left: 35%;
-	}
-	.tool.three {
-		position: fixed;
-		bottom: 10px;
-		left: 50%;
-	}
-	.tool.four {
-		position: fixed;
-		bottom: 10px;
-		left: 65%;
-	}
-	.tool.five {
-		position: fixed;
-		bottom: 10px;
-		left: 80%;
-	}
-
-	div.piece {
-		cursor: move;
-		position: fixed;
-		bottom: 10px;
-		font-size: 4rem;
-	}
-
-	#bigans div {
-		cursor: move;
-		position: static;	
-	}
+}
 
 
-	div.circle {
-		border: 3px solid #803100;
-		background: brown; color: black;
-		border-radius: 50%;
-		float: left;
-		margin-left: 5px;
-		text-align: center;
-		line-height: 70px;
-		width: 70px; height: 70px;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-	}
-	div.circle.five {
-		border: 3px solid gray; background:silver; width:75px;height:75px;line-height:75px;
-	}
-	div.circle.ten {
-		border: 3px solid gray;background:silver; width:80px;height:80px;line-height:80px;
-	}
-	div.circle.fifty {
-		background:gold;width:85px;height:85px;line-height:85px;
-	}
-	div.circle.dot {
-		border: none;
-		margin-left: 30px;
-	}
+.ui.menu {
+	background-color: #fc9;
+}
 
-	div.rect {
-		border: 3px solid #AA0000;
-		background: #FF9999; color: black;
-		border-radius: 0%;
-		float: left;
-		text-align: center;
-		line-height: 70px;
-		width: 130px; height: 70px;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-	}
 
-	div.rect.fiveHundred {
-		background:#FF91FE;width:130px;height:70px;line-height:70px	
-	}
+.ui.huge.button {
+	width: 75%;
+	min-width: 320px;
+	font-size: 55px;
+	line-height: 72px;
+	padding-top: 32px;
+	padding-left: 20%;
+	padding-right: 20%;
+}
 
-	div.roman {
-		float: left;
-	}
+select {
+	min-height: 40px;
+	line-height: 24px;
+	font-size: 24px;
 
-	@media screen and (min-width: 1060px) {  
-   		.mobile {
-        	display: none;
-		}
-	}
-	@media screen and (max-width: 1060px) {  
-   		.mobileOut {
-        	display: none;
-		}
+	margin-left: 25px;
+}
 
+.math,.note {	
+	display: block;
+	width: 100%;
+	min-width: 200px;
+	text-align: right;
+}
+
+.math {
+}
+
+.note {
+	color: #c33;
+	position: relative;
+	right: 28px;
+}
+
+
+@media only screen and (max-width : 480px) {
+	.noPhone {
+		display: none;
 	}
+} 

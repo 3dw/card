@@ -5,123 +5,133 @@
 
 <head>
 <meta charset="utf-8">
-<title>閃卡</title>
+<title>直式閃卡</title>
 
 
-<!--Author: Bestian Tang-->
+<!-- Author: Bestian Tang -->
 <!--Version: 1.0-->
 <!-- Release to Freemath, 自學數學團-->
-<!-- Right: CC0, Public Domain-->
+<!-- License: CC0, Public Domain-->
 
 
 <link rel="stylesheet" type="text/css" class="ui" href="stylesheets/semantic.min.css">
 <link rel="stylesheet" type="text/css" class="ui"  href = "index.css">
 
-<script src="javascripts/jquery-1.10.2.js"></script>
-<script src="javascripts/jquery-ui.js"></script>
-<script src="javascripts/underscore-min.js"></script>
-<script src="javascripts/backbone-min.js"></script>
-<script src="javascripts/angular.min.js"></script>
-
-
-
 
 </head>
 
-<script type="text/javascript" src = "index.js"></script>
-<!-- <script type="text/javascript" src = "indexOld.js"></script>  -->
 
 
 <body ng-controller = "cardCtrl" ng-keypress = "flash($event)">
 
+<nav class="ui menu">
 
-<nav class="ui tiered menu">
+      <select class = "ui item"
+              ng-model = "myRep" ng-init = "myRep = '6'">
+        <option ng-selected = "myRep == '6'" ng-value = "'6'">
+          &nbsp;&nbsp;6&nbsp;&nbsp;
+        </option>
+        <option ng-selected = "myRep == 'IV'" ng-value = "'IV'">
+          &nbsp;&nbsp;IV&nbsp;&nbsp;
+        </option>
+<!--        <option ng-selected = "myRep == '.'" ng-value = "'.'">點點X</option>
+        <option ng-selected = "myRep == '$'" ng-value = "'$'">錢幣X</option>
+        <option ng-selected = "myRep == '六'" ng-value = "'六'">中文X</option>
+        <option ng-selected = "myRep == '步'" ng-value = "'步'" >走路X</option>
+        <option ng-selected = "myRep == '列'" ng-value = "'列'">數列X</option>
+        <option ng-selected = "myRep == 'x'" ng-value = "'x'">代數X</option> -->
+      </select>
 
-  <h3 class="header item">閃卡</h3>
+      <div class = "ui item">
+        <br/>
+      </div>
 
-
-  <a class="active item" onclick="swi(this)">6</a>
-  <a class="item" onclick="swi(this)">.</a>
-  <a class="item" onclick="swi(this)">$</a>
-  <a class="item" onclick="swi(this)">六</a>
-  <a class="item" onclick="swi(this)">步</a>
-  <a class="item" onclick="swi(this)">列</a>
-  <a class="item" onclick="swi(this)">x</a>
-
-  <a class="active green item" onclick="swi(this)">閃卡</a>
-  <a class="item" onclick="swi(this)">挑戰</a>
-  <a class="item" onclick="swi(this)">挫折</a>
-  <a class="item" onclick="hack(this)">修改評語</a>
-
-
-  <a class="active blue item" onclick="chUp(this)">20</a>
-  <a class="item" onclick="chUp(this)">50</a>
-  <a class="item" onclick="chUp(this)">100</a>
-  <a class="item" onclick="chUp(this)">1000</a>
-
-
-  <a class="active purple item" onclick="swi(this)">0</a>
-  <a class="item" onclick="chLow(this)">-20</a>
-  <a class="item" onclick="chLow(this)">-50</a>
-  <a class="item" onclick="chLow(this)">-100</a>
-
-	<a class="active teal item" onclick "swi(this)">Z</a>
-	<a class="item" onclick "swi(this)">Z/7Z</a>
-	<a class="item" onclick "swi(this)">Z/12Z</a>
-
-</div>
+      <select class = "ui item"
+              ng-model = "op" ng-init = "op = '+'">
+        <option ng-selected = "op == '+'" ng-value = "'+'">&nbsp;&nbsp;{{'+' | showOp}}&nbsp;&nbsp;</option>
+        <option ng-selected = "op == '-'" ng-value = "'-'">&nbsp;&nbsp;{{'-' | showOp}}&nbsp;&nbsp;</option>
+        <option ng-selected = "op == '*'" ng-value = "'*'">&nbsp;&nbsp;{{'*' | showOp}}&nbsp;&nbsp;</option>
+ <!--       <option ng-selected = "op == '/'" ng-value = "'/'"> {{'/' | showOp}} </option> -->
+      </select>
 
 </nav>
 
+<div id = "card" class = "ui center aligned grid"
+                                            ng-click = "flash(1)">
+
+        <div class="ui huge blue button">
+          <section ng-show = "!side">
+            <br/>
+              <span class = "noPhone">按Enter鍵或<br/></span>點擊
+          </section>
+
+              <section ng-show = "side > 0">
 
 
-<br />
+                      <div class = "note"
+                          ng-show = "side == 1
+                                    && (op == '+' || op == '-')
+                                    && myRep !== 'IV' ">
+                        <br/>
+
+                      </div>
+
+                      <div class = "note"
+                          ng-show = "side > 1 && op == '+'
+                                && (op == '+' || op == '-')
+                                && myRep !== 'IV' ">
+                        <span ng-repeat = "m in myMiddle(n1,op,n2)[0] track by $index" ng-bind-html = "m | rep:myRep"></span>
+                      </div>
 
 
-<div style="diplay block:;width:100%;height:15ex">
-<table style="margin-left: 20px;width:80%" >
+                <div class = "math">
+                  <span ng-bind-html = "n1 | rep:myRep "></span>
+                </div>
 
-<tr>
-	<td width="50%"  class="ui segment">
-            <span class="ui gray ribbon label" style = "width:12%" ng-click = "op = '+'">加</span>
+                <div class = "math">
+                  <span ng-bind-html = "op | showOp | makeOp:myRep"></span>
+                  <span ng-bind-html = "n2 | rep:myRep "></span>
+                  <hr/>
+                </div>
 
-	</td>
-	<td width="50%" class="ui segment">
-            <span class="ui gray ribbon label" style = "width:12%" ng-click = "op = '*'">乘</span>
-	</td>
-</tr>
-<tr >
-	<td width="400" class="ui segment">
-            <span class="ui gray ribbon label" style = "width:12%" ng-click = "op = '-'">減</span>
-	</td>
-	<td width="400" class="ui segment">
-            <span class="ui gray ribbon label" style = "width:12%" ng-click = "op = '/'">除</span>
-	</td>
-</tr>
-</table>
+                <div class = "math"  ng-show = "side == 1 && op == '*'">
+                  <span><br/></span>
+                    <hr/>
+                  <span><br/></span>
+                </div>
+
+              </section>
+
+                  <section ng-show = "side > 1 && op == '*'">
+
+                        <div class = "math" ng-repeat = "m in myMiddle(n1,op,n2)[1] track by $index">
+                          <span ng-bind-html = "m | rep:myRep "></span>
+                        </div>
+
+                        <div class = "math">
+                    <hr/>
+                        </div>
+
+                        <div class = "math" ng-show = "side == 2">
+                          <span><br/></span>
+                        </div>
+
+                  </section>
+
+
+                          <section ng-show = "isMax(side)">
+                            <div class = "math">
+                              <span ng-bind-html = "myEval(n1+op+n2) | rep:myRep "></span>
+                            </div>
+                          </section>
+
+        </div>
+
 </div>
 
 
-<br><br>
-<div id = "card" ng-show = "side == 0" class="ui message" style="height: 50ex;width: 95%; border:2px;">
-
-  <p id = "bigans" class = "bigans">{{n1}} {{op | showOp}}  {{n2}} 
-  </p>
-</div>
-
-<div id = "card" ng-show = "side == 1" class="ui message" style="height: 50ex;width: 95%; border:2px;">
-  <p id = "bigans" class = "bigans">{{$eval(n1+op+n2)}} 
-  </p>
-</div>
-
-<div id = "card" ng-hide = "true" class="ui message" style="height: 50ex;width: 95%; border:2px;">
-	<p id = "bigans" class = "bigans"><br/>
-	歡迎使用多功能閃卡！<br/>
-	<span class ="mobile">手機橫放畫面較佳。</span>
-	</p>
-</div>
-<br />
-
-
+<script src="javascripts/angular.min.js"></script>
+<script type="text/javascript" src = "allRander.js"></script>
+<script type="text/javascript" src = "index.js"></script>
 
 </body>
