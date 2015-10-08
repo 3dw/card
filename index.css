@@ -49,6 +49,11 @@ select {
 	color: #c33;
 	position: relative;
 	right: 28px;
+	font-size: 80%;
+}
+
+.mid {
+	color: #c33;	
 }
 
 

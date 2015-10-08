@@ -28,9 +28,6 @@
 	          &nbsp;&nbsp;IV&nbsp;&nbsp;
 	        </option>
       </select>
-      <div class = "ui item">
-        <br/>
-      </div>
       <select class = "ui item"
               ng-model = "op" ng-init = "op = '+'">
         <option ng-selected = "op == '+'" ng-value = "'+'">&nbsp;&nbsp;{{'+' | showOp}}&nbsp;&nbsp;</option>
@@ -41,17 +38,23 @@
       <div class = "ui item">
         <br/>
       </div>
-      <input class = "ui item"
-      		ng-model = "lowBound"
-      		type="number"
-      		step = "10">
+      
       <div class = "ui item">
-        ~
+      
+        <input
+        		ng-model = "lowBound"
+        		type="number"
+        		step = "10"/>
+          ~
+        <input
+        		ng-model = "upBound"
+        		type="number"
+        		step = "10"/>
+
+        {{side}}
       </div>
-      <input class = "ui item"
-      		ng-model = "upBound"
-      		type="number"
-      		step = "10">
+
+
 </nav>
 
 <div id = "card" class = "ui center aligned grid"
@@ -69,11 +72,10 @@
                             && (op == '+' || op == '-')
                             && myRep !== 'IV' ">
                 <br/>
-
               </div>
 
               <div class = "note"
-                  ng-show = "side > 1 && op == '+'
+                  ng-show = "side > 1
                         && (op == '+' || op == '-')
                         && myRep !== 'IV' ">
                 <span ng-repeat = "m in myMiddle(n1,op,n2)[0] track by $index" ng-bind-html = "m | rep:myRep"></span>
@@ -114,8 +116,14 @@
           </section>
 
 
+          <section ng-show = "side == 2">
+            <div class = "math mid">
+              <span ng-bind-html = "myTail(n1+op+n2) | rep:myRep "></span>
+            </div>
+          </section>
+
           <section ng-show = "isMax(side)">
-            <div class = "math">
+            <div class = "math mid">
               <span ng-bind-html = "myEval(n1+op+n2) | rep:myRep "></span>
             </div>
           </section>

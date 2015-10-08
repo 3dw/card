@@ -30,7 +30,7 @@ function cardCtrl ($scope, $M, $s, $u, $plus, $minus, $times) {
 		flash: function(e){
 
 				if ($scope.op == '+' || $scope.op == '-') {
-					$s = 2
+					$s = 3//2
 				} else {
 					$s = 3
 				}
@@ -53,6 +53,10 @@ function cardCtrl ($scope, $M, $s, $u, $plus, $minus, $times) {
 		myEval : function (formula) {
 			return $M.eval(formula);
 		},
+		myTail : function (formula) {
+			ans = (""+$M.eval(formula)).substring(1);
+			return ans;
+		},
 
 		myMiddle : function (n1,op,n2) {
 			var upList = [];
@@ -61,9 +65,10 @@ function cardCtrl ($scope, $M, $s, $u, $plus, $minus, $times) {
 			switch (op) {
 				case '*':
 					return [$times.up(n1,op,n2),$times.md(n1,op,n2)];
-
 				case '+':
 					return [$plus.up(n1,op,n2),$plus.md(n1,op,n2)];
+				case '-':
+					return [' ',' '];
 				default:
 					return [['Error'],['Error']];
 			}
