@@ -66,6 +66,13 @@
               <span class = "noPhone">按Enter鍵或<br/></span>點擊
           </section>
 
+
+              <section ng-show = "side > 1 && op == '-'">
+                <div class = "math">
+                  <span><br/></span>
+                </div>
+              </section>
+
               <section ng-show = "side > 0">
               <div class = "note"
                   ng-show = "side == 1
@@ -118,7 +125,7 @@
 
           <section ng-show = "side == 2">
             <div class = "math mid">
-              <span ng-bind-html = "myTail(n1+op+n2) | rep:myRep "></span>
+              <span ng-bind-html = "myTail(n1+op+n2,op) | rep:myRep "></span>
             </div>
           </section>
 
@@ -128,7 +135,13 @@
             </div>
           </section>
 
-           <section ng-show = "!isMax(side)">
+            <section ng-show = "side == 1">
+              <div class = "math">
+                <span><br/></span>
+              </div>
+            </section>
+
+           <section ng-show = "1">
             <div class = "math">
               <span><br/></span>
             </div>

@@ -29,8 +29,8 @@ function cardCtrl ($scope, $M, $s, $u, $plus, $minus, $times) {
 	angular.extend($scope,{
 		flash: function(e){
 
-				if ($scope.op == '+' || $scope.op == '-') {
-					$s = 3//2
+				if ($scope.op == '-') {
+					$s = 2
 				} else {
 					$s = 3
 				}
@@ -53,8 +53,14 @@ function cardCtrl ($scope, $M, $s, $u, $plus, $minus, $times) {
 		myEval : function (formula) {
 			return $M.eval(formula);
 		},
-		myTail : function (formula) {
-			ans = (""+$M.eval(formula)).substring(1);
+		myTail : function (formula,op) {
+			switch (op) {
+				case '+':
+					ans = (""+$M.eval(formula)).substring(1);
+					break;
+				default:
+					ans = '';
+			}
 			return ans;
 		},
 
@@ -65,10 +71,13 @@ function cardCtrl ($scope, $M, $s, $u, $plus, $minus, $times) {
 			switch (op) {
 				case '*':
 					return [$times.up(n1,op,n2),$times.md(n1,op,n2)];
+					break;
 				case '+':
 					return [$plus.up(n1,op,n2),$plus.md(n1,op,n2)];
+					break;
 				case '-':
-					return [' ',' '];
+					return [$minus.up(n1,op,n2),$minus.md(n1,op,n2)];
+					break;
 				default:
 					return [['Error'],['Error']];
 			}
